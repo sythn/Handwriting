@@ -7,15 +7,18 @@
 //
 
 #import "HandwritingAppDelegate.h"
+#import "MainViewController.h"
 
 @implementation HandwritingAppDelegate
 
 
 @synthesize window=_window;
+@synthesize controller = _controller;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	// Override point for customization after application launch.
+
+	[self.window addSubview:self.controller.view];
 	[self.window makeKeyAndVisible];
     return YES;
 }

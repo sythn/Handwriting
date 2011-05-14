@@ -14,6 +14,14 @@
 		6CC8C09F137C02D10076A042 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C09E137C02D10076A042 /* main.m */; };
 		6CC8C0A2137C02D10076A042 /* HandwritingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C0A1137C02D10076A042 /* HandwritingAppDelegate.m */; };
 		6CC8C0A5137C02D10076A042 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CC8C0A3137C02D10076A042 /* MainWindow.xib */; };
+		6CC8C0B5137C02F30076A042 /* PathView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C0B4137C02F30076A042 /* PathView.m */; };
+		6CC8C0CF137C08880076A042 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C0CD137C08880076A042 /* MainViewController.m */; };
+		6CC8C0D0137C08880076A042 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CC8C0CE137C08880076A042 /* MainViewController.xib */; };
+		6CC8C0DC137C101F0076A042 /* icon-large.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC8C0D9137C101F0076A042 /* icon-large.png */; };
+		6CC8C0DD137C101F0076A042 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC8C0DA137C101F0076A042 /* icon.png */; };
+		6CC8C0DE137C101F0076A042 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC8C0DB137C101F0076A042 /* icon@2x.png */; };
+		6CC8C0E9137C497E0076A042 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C0E8137C497E0076A042 /* Line.m */; };
+		6CC8C0EC137C498E0076A042 /* LineSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C0EB137C498E0076A042 /* LineSegment.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,13 +29,25 @@
 		6CC8C091137C02D10076A042 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6CC8C093137C02D10076A042 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6CC8C095137C02D10076A042 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		6CC8C099137C02D10076A042 /* Handwriting-Info.plist */ = {isa = PBXFileReference; path = "Handwriting-Info.plist"; sourceTree = "<group>"; };
+		6CC8C099137C02D10076A042 /* Handwriting-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Handwriting-Info.plist"; sourceTree = "<group>"; };
 		6CC8C09B137C02D10076A042 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6CC8C09D137C02D10076A042 /* Handwriting-Prefix.pch */ = {isa = PBXFileReference; path = "Handwriting-Prefix.pch"; sourceTree = "<group>"; };
+		6CC8C09D137C02D10076A042 /* Handwriting-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Handwriting-Prefix.pch"; sourceTree = "<group>"; };
 		6CC8C09E137C02D10076A042 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6CC8C0A0137C02D10076A042 /* HandwritingAppDelegate.h */ = {isa = PBXFileReference; path = HandwritingAppDelegate.h; sourceTree = "<group>"; };
+		6CC8C0A0137C02D10076A042 /* HandwritingAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HandwritingAppDelegate.h; sourceTree = "<group>"; };
 		6CC8C0A1137C02D10076A042 /* HandwritingAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HandwritingAppDelegate.m; sourceTree = "<group>"; };
 		6CC8C0A4137C02D10076A042 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		6CC8C0B3137C02F30076A042 /* PathView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathView.h; sourceTree = "<group>"; };
+		6CC8C0B4137C02F30076A042 /* PathView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathView.m; sourceTree = "<group>"; };
+		6CC8C0CC137C08880076A042 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		6CC8C0CD137C08880076A042 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		6CC8C0CE137C08880076A042 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		6CC8C0D9137C101F0076A042 /* icon-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-large.png"; sourceTree = "<group>"; };
+		6CC8C0DA137C101F0076A042 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		6CC8C0DB137C101F0076A042 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		6CC8C0E7137C497E0076A042 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
+		6CC8C0E8137C497E0076A042 /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
+		6CC8C0EA137C498D0076A042 /* LineSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineSegment.h; sourceTree = "<group>"; };
+		6CC8C0EB137C498E0076A042 /* LineSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineSegment.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +94,10 @@
 		6CC8C097137C02D10076A042 /* Handwriting */ = {
 			isa = PBXGroup;
 			children = (
+				6CC8C0B9137C044A0076A042 /* Images */,
+				6CC8C0B8137C04490076A042 /* Model */,
+				6CC8C0B7137C04470076A042 /* View */,
+				6CC8C0B6137C04420076A042 /* Controller */,
 				6CC8C0A0137C02D10076A042 /* HandwritingAppDelegate.h */,
 				6CC8C0A1137C02D10076A042 /* HandwritingAppDelegate.m */,
 				6CC8C0A3137C02D10076A042 /* MainWindow.xib */,
@@ -91,6 +115,46 @@
 				6CC8C09E137C02D10076A042 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6CC8C0B6137C04420076A042 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6CC8C0CC137C08880076A042 /* MainViewController.h */,
+				6CC8C0CD137C08880076A042 /* MainViewController.m */,
+				6CC8C0CE137C08880076A042 /* MainViewController.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		6CC8C0B7137C04470076A042 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6CC8C0B3137C02F30076A042 /* PathView.h */,
+				6CC8C0B4137C02F30076A042 /* PathView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6CC8C0B8137C04490076A042 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6CC8C0E7137C497E0076A042 /* Line.h */,
+				6CC8C0E8137C497E0076A042 /* Line.m */,
+				6CC8C0EA137C498D0076A042 /* LineSegment.h */,
+				6CC8C0EB137C498E0076A042 /* LineSegment.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6CC8C0B9137C044A0076A042 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				6CC8C0D9137C101F0076A042 /* icon-large.png */,
+				6CC8C0DA137C101F0076A042 /* icon.png */,
+				6CC8C0DB137C101F0076A042 /* icon@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +209,10 @@
 			files = (
 				6CC8C09C137C02D10076A042 /* InfoPlist.strings in Resources */,
 				6CC8C0A5137C02D10076A042 /* MainWindow.xib in Resources */,
+				6CC8C0D0137C08880076A042 /* MainViewController.xib in Resources */,
+				6CC8C0DC137C101F0076A042 /* icon-large.png in Resources */,
+				6CC8C0DD137C101F0076A042 /* icon.png in Resources */,
+				6CC8C0DE137C101F0076A042 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +225,10 @@
 			files = (
 				6CC8C09F137C02D10076A042 /* main.m in Sources */,
 				6CC8C0A2137C02D10076A042 /* HandwritingAppDelegate.m in Sources */,
+				6CC8C0B5137C02F30076A042 /* PathView.m in Sources */,
+				6CC8C0CF137C08880076A042 /* MainViewController.m in Sources */,
+				6CC8C0E9137C497E0076A042 /* Line.m in Sources */,
+				6CC8C0EC137C498E0076A042 /* LineSegment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class MainViewController;
+
 @interface HandwritingAppDelegate : NSObject <UIApplicationDelegate> {
+	
+	MainViewController *_controller;
 
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+
+@property (nonatomic, retain) IBOutlet MainViewController *controller;
 
 @end
