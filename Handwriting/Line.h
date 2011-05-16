@@ -31,7 +31,7 @@
 @property (readonly) CGSize			 shiftSize;
 @property (readonly) CGFloat		 scaleSize;
 
-@property (readonly) CGFloat		 length;
+@property (readonly) double			 length;
 @property (readonly) CGPoint		 centerOfMass;
 
 - (void)addX:(CGFloat)x y:(CGFloat)y;

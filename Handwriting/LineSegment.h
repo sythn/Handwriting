@@ -23,7 +23,7 @@
 @property (nonatomic) CGPoint	 startPoint;
 @property (nonatomic) CGPoint	 endPoint;
 
-@property (readonly) CGFloat	 length;
+@property (readonly) double		 length;
 @property (readonly) CGPoint	 center;
 
 - (id)initWithStartPoint:(CGPoint)start endPoint:(CGPoint)end;

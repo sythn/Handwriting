@@ -37,17 +37,19 @@
 
 #pragma mark - Synthesizing methods
 
-- (CGFloat)length {
+- (double)length {
 	
-	_length = 0;
+	double length = 0.0f;
 	
 	for (int i=0; i<[_segments count]; i++) {
 		
-		_length += [[_segments objectAtIndex:i] length];
+		LineSegment *segment = [_segments objectAtIndex:i];
+		
+		length += [segment length];
 		
 	}
 	
-	return _length;
+	return length;
 	
 }
 
@@ -105,7 +107,11 @@
 
 - (void)scaleWithFactor:(double)scaleFactor {
 	
-	_scaleSize += scaleFactor;
+	NSLog(@"scaling with factor: %f", scaleFactor);
+	
+	double length = [self length];
+	
+	_scaleSize *= scaleFactor;
 	
 	for (int i=0; i<[self.segments count]; i++) {
 		
@@ -115,9 +121,15 @@
 		
 	}
 	
+	NSLog(@"length before: %f, after: %f", length, [self length]);
+	
 }
 
 - (void)shiftWithSize:(CGSize)shiftSize {
+	
+	NSLog(@"shifting with size: %@", NSStringFromCGSize(shiftSize));
+	
+	CGPoint centerOfMass = [self centerOfMass];
 	
 	_shiftSize = CGSizeMake(_shiftSize.width + shiftSize.width, _shiftSize.height + shiftSize.height);
 	
@@ -129,12 +141,14 @@
 		
 	}
 	
+	NSLog(@"center of mass before: %@, after: %@", NSStringFromCGPoint(centerOfMass), NSStringFromCGPoint(self.centerOfMass));
+	
 }
 
 - (void)transformToIdentity {
 	
 	[self shiftWithSize:CGSizeMake(-_shiftSize.width, -_shiftSize.height)];
-	[self scaleWithFactor:-_scaleSize];
+	[self scaleWithFactor:1/_scaleSize];
 	
 }
 
@@ -144,17 +158,22 @@
 	
 	double keypointInterval = self.length / keypointCount;
 
-	double pointthrough = 0;
-	double segmentIndex = 0;
+	double pointthrough = 0.f;
+	int segmentIndex = 0;
 	int i = 0;
 	
 	while (i < keypointCount) {
+		
+		if (segmentIndex >= [_segments count]) {
+			break;
+		}
 		
 		LineSegment *segment = [_segments objectAtIndex:segmentIndex];
 		
 		if (pointthrough > [segment length]) {
 			
 			pointthrough -= [segment length];
+			
 			segmentIndex++;
 			continue;
 			
@@ -194,7 +213,7 @@
 	[self createKeypointsWithCount:KEYPOINT_SIZE];
 	[line createKeypointsWithCount:KEYPOINT_SIZE];
 	
-	for (int i=0; i<KEYPOINT_SIZE; i++) {
+	for (int i=1; i<KEYPOINT_SIZE; i++) {
 		
 		CGPoint point = [self keypointAtIndex:i];
 		CGPoint other = [line keypointAtIndex:i];
@@ -205,7 +224,7 @@
 	
 	[self transformToIdentity];
 	
-	return error;	
+	return error / KEYPOINT_SIZE;	
 	
 }
 

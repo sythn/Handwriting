@@ -37,10 +37,10 @@
 	
 }
 
-- (CGFloat)length {
+- (double)length {
 	
-	_length = sqrt(pow(_startPoint.x - _endPoint.x, 2) + pow(_startPoint.y - _endPoint.y, 2));	
-	return _length;
+	double length = sqrt(pow(_startPoint.x - _endPoint.x, 2) + pow(_startPoint.y - _endPoint.y, 2));	
+	return length;
 	
 }
 
