@@ -6,7 +6,7 @@
 //  Copyright 2011 JoopleBerry Inc. All rights reserved.
 //
 
-#define KEYPOINT_SIZE 1000
+#define KEYPOINT_SIZE 500
 
 #import <Foundation/Foundation.h>
 
