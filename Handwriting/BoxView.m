@@ -35,7 +35,7 @@
 		_characterLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.bounds.size.width - 20, self.bounds.size.height - 30)];
 		[_characterLabel setTextColor:[UIColor whiteColor]];
 		[_characterLabel setBackgroundColor:[UIColor clearColor]];
-		[_characterLabel setFont:[UIFont boldSystemFontOfSize:72]];
+		[_characterLabel setFont:[UIFont boldSystemFontOfSize:70]];
 		[_characterLabel setTextAlignment:UITextAlignmentCenter];
 		[_characterLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 		[self addSubview:_characterLabel];
