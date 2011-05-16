@@ -265,7 +265,7 @@
 			
 			if (i >= [_currentOutput count]) {
 				[box setHidden:YES];
-				return;
+				continue;
 			}
 			
 			[box setHidden:NO];
