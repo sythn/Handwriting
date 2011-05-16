@@ -15,8 +15,7 @@
 
 @synthesize segments	= _segments;
 
-@synthesize shiftSize	= _shiftSize;
-@synthesize scaleSize	= _scaleSize;
+#pragma mark -
 
 - (id)init {
 	
@@ -32,6 +31,41 @@
 	}
 	
 	return self;
+	
+}
+
+#pragma mark - NSCoding methods
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	
+	if ((self = [super init])) {
+		
+		_segments = [[NSMutableArray alloc] initWithArray:[aDecoder decodeObjectForKey:@"segments"]];
+		
+		_shiftSize = CGSizeMake(0, 0);
+		_scaleSize = 1;
+		
+	}
+	
+	return self;
+	
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+	
+	CGSize shiftSize = _shiftSize;
+	CGFloat scaleSize = _scaleSize;
+	
+	if (shiftSize.width != 0 || shiftSize.height != 0 || scaleSize != 1) {
+		[self transformToIdentity];
+	}
+	
+	[aCoder encodeObject:self.segments forKey:@"segments"];
+	
+	if (shiftSize.width != 0 || shiftSize.height != 0 || scaleSize != 1) {
+		[self scaleWithFactor:scaleSize];
+		[self shiftWithSize:shiftSize];
+	}
 	
 }
 
@@ -73,8 +107,8 @@
 		
 	}
 	
-	_centerOfMass = CGPointMake(centerX / totalLength, centerY / totalLength);
-	return _centerOfMass;
+	CGPoint centerOfMass = CGPointMake(centerX / totalLength, centerY / totalLength);
+	return centerOfMass;
 	
 }
 
@@ -107,10 +141,6 @@
 
 - (void)scaleWithFactor:(double)scaleFactor {
 	
-	NSLog(@"scaling with factor: %f", scaleFactor);
-	
-	double length = [self length];
-	
 	_scaleSize *= scaleFactor;
 	
 	for (int i=0; i<[self.segments count]; i++) {
@@ -121,15 +151,9 @@
 		
 	}
 	
-	NSLog(@"length before: %f, after: %f", length, [self length]);
-	
 }
 
 - (void)shiftWithSize:(CGSize)shiftSize {
-	
-	NSLog(@"shifting with size: %@", NSStringFromCGSize(shiftSize));
-	
-	CGPoint centerOfMass = [self centerOfMass];
 	
 	_shiftSize = CGSizeMake(_shiftSize.width + shiftSize.width, _shiftSize.height + shiftSize.height);
 	
@@ -140,8 +164,6 @@
 		[segment shiftWithSize:shiftSize];
 		
 	}
-	
-	NSLog(@"center of mass before: %@, after: %@", NSStringFromCGPoint(centerOfMass), NSStringFromCGPoint(self.centerOfMass));
 	
 }
 
@@ -224,7 +246,7 @@
 	
 	[self transformToIdentity];
 	
-	return error / KEYPOINT_SIZE;	
+	return error / pow(KEYPOINT_SIZE, 2);	
 	
 }
 

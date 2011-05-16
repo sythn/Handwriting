@@ -9,6 +9,31 @@
 #import "TemplateManager.h"
 #import "Line.h"
 
+@interface NSDictionary (HWComparisonAdditions)
+
+- (NSComparisonResult)compareByError:(NSDictionary *)dict;
+
+@end
+
+@implementation NSDictionary (HWComparisonAdditions)
+
+- (NSComparisonResult)compareByError:(NSDictionary *)dict {
+	
+	NSNumber *selfError = [self objectForKey:@"Error"];
+	NSNumber *dictError = [dict objectForKey:@"Error"];
+	
+	if (!selfError || !dictError) {
+		
+		return NSOrderedSame;
+		
+	}
+	
+	return [selfError compare:dictError];
+	
+}
+
+@end
+
 static TemplateManager *sharedTemplateManager;
 
 @interface TemplateManager (Internal)
@@ -67,6 +92,22 @@ static TemplateManager *sharedTemplateManager;
 
 #pragma mark - Template managing
 
+- (NSArray *)templates {
+	
+	NSMutableArray *array = [[NSMutableArray alloc] init];
+	
+	for (int i=0; i<[_templates count]; i++) {
+		
+		NSDictionary *dict = [_templates objectAtIndex:i];
+		[array addObject:[dict objectForKey:@"Character"]];
+		
+	}
+	
+	[array sortUsingSelector:@selector(compare:)];
+	return [array autorelease];
+	
+}
+
 - (void)addTemplate:(Line *)template forCharacter:(NSString *)character {
 	
 	NSDictionary *newDict = [[NSDictionary alloc] initWithObjectsAndKeys:character, @"Character", template, @"Template", nil];
@@ -85,21 +126,22 @@ static TemplateManager *sharedTemplateManager;
 	
 	[_templates addObject:newDict];
 	
+	[self synchronize];
+	
 }
 
-- (NSArray *)templates {
-	
-	NSMutableArray *array = [[NSMutableArray alloc] init];
+-(BOOL)templateExistsForCharacter:(NSString *)character {
 	
 	for (int i=0; i<[_templates count]; i++) {
 		
 		NSDictionary *dict = [_templates objectAtIndex:i];
-		[array addObject:[dict objectForKey:@"Character"]];
+		if ([[dict objectForKey:@"Character"] isEqualToString:character]) {
+			return YES;
+		}
 		
 	}
 	
-	[array sortUsingSelector:@selector(compare:)];
-	return [array autorelease];
+	return NO;
 	
 }
 
@@ -114,6 +156,8 @@ static TemplateManager *sharedTemplateManager;
 		
 		NSDictionary *dict = [_templates objectAtIndex:i];
 		double error = [input compareToLine:[dict objectForKey:@"Template"]];
+		
+//		NSLog(@"compared to char: %@, error: %f", [dict objectForKey:@"Character"], error);
 		
 		if (bestError == -1 || error < bestError) {
 			bestError = error;
@@ -139,7 +183,7 @@ static TemplateManager *sharedTemplateManager;
 		
 	}
 	
-	[results sortUsingSelector:@selector(compare:)];
+	[results sortUsingSelector:@selector(compareByError:)];
 	
 	return results;
 	

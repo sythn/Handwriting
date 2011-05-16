@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BoxViewDelegate;
 
 @interface BoxView : UIView {
 	
@@ -16,6 +17,7 @@
 
 	BOOL		 _editing;
 	BOOL		 _selected;
+	BOOL		 _allowsSelecting;
 	BOOL		 _new;
 	
 	UIImageView	*_backgroundView;
@@ -24,6 +26,8 @@
 	UILabel		*_characterLabel;
 	UILabel		*_descriptionLabel;
 	
+	id <BoxViewDelegate>	 _delegate;
+	
 }
 
 @property (nonatomic, retain) NSString			*character;
@@ -31,6 +35,17 @@
 
 @property (nonatomic, getter = isEditing) BOOL	 editing;
 @property (nonatomic, getter = isSelected) BOOL	 selected;
+@property (nonatomic) BOOL						 allowsSelecting;
 @property (nonatomic, getter = isNew) BOOL		 new;
+
+@property (nonatomic, assign) id <BoxViewDelegate>	 delegate;
+
+@end
+
+@protocol BoxViewDelegate <NSObject>
+
+@optional
+	- (void)boxView:(BoxView *)boxView selected:(BOOL)selected;
+	- (void)boxViewDeleteButtonClicked:(BoxView *)boxView;
 
 @end

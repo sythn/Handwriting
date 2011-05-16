@@ -76,12 +76,6 @@ void DrawGridlines(CGContextRef context, CGFloat width, CGFloat height) {
     self = [super initWithFrame:frame];
     if (self) {
 		
-		for (int i=0; i<PATH_LENGTH; i++) {
-			
-			path[i] = CGPointMake(100, 100);
-			
-		}
-		
 		[self reset];
 		
 		self.layer.opaque = YES;
@@ -104,6 +98,10 @@ void DrawGridlines(CGContextRef context, CGFloat width, CGFloat height) {
 	
 	memset(path, 0, sizeof(path));
 	currentIndex = 0;
+	
+	self.layer.opaque = YES;
+	self.layer.delegate = self;
+	self.layer.bounds = self.bounds;
 
 	[self.layer setNeedsDisplay];
 	

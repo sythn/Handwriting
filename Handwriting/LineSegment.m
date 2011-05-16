@@ -14,11 +14,11 @@
 @synthesize startPoint		= _startPoint;
 @synthesize endPoint		= _endPoint;
 
+#pragma mark -
+
 - (id)initWithStartPoint:(CGPoint)start endPoint:(CGPoint)end {
 	
 	if ((self = [self init])) {
-		
-		_length = 0;
 		
 		self.startPoint = start;
 		self.endPoint	= end;
@@ -37,6 +37,32 @@
 	
 }
 
+#pragma mark - NSCoding methods
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	
+	if ((self = [super init])) {
+		
+		self.startPoint = CGPointMake([aDecoder decodeDoubleForKey:@"startX"], [aDecoder decodeDoubleForKey:@"startY"]);
+		self.endPoint = CGPointMake([aDecoder decodeDoubleForKey:@"endX"], [aDecoder decodeDoubleForKey:@"endY"]);
+		
+	}
+	
+	return self;
+	
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+	
+	[aCoder encodeDouble:self.startPoint.x forKey:@"startX"];
+	[aCoder encodeDouble:self.startPoint.y forKey:@"startY"];
+	[aCoder encodeDouble:self.endPoint.x forKey:@"endX"];
+	[aCoder encodeDouble:self.endPoint.y forKey:@"endY"];
+	
+}
+
+#pragma mark -
+
 - (double)length {
 	
 	double length = sqrt(pow(_startPoint.x - _endPoint.x, 2) + pow(_startPoint.y - _endPoint.y, 2));	
@@ -46,8 +72,8 @@
 
 - (CGPoint)center {
 	
-	_center = CGPointMake((_startPoint.x + _endPoint.x)/2, (_startPoint.y + _endPoint.y)/2);
-	return _center;
+	CGPoint center = CGPointMake((_startPoint.x + _endPoint.x)/2, (_startPoint.y + _endPoint.y)/2);
+	return center;
 	
 }
 

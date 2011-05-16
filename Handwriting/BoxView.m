@@ -11,12 +11,15 @@
 
 @implementation BoxView
 
-@synthesize character	= _character;
-@synthesize description	= _description;
+@synthesize character		= _character;
+@synthesize description		= _description;
 
-@synthesize new			= _new;
-@synthesize selected	= _selected;
-@synthesize editing		= _editing;
+@synthesize new				= _new;
+@synthesize selected		= _selected;
+@synthesize allowsSelecting	= _allowsSelecting;
+@synthesize editing			= _editing;
+
+@synthesize delegate	= _delegate;
 
 - (id)initWithFrame:(CGRect)frame {
 	
@@ -29,17 +32,19 @@
 		[_backgroundView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 		[self addSubview:_backgroundView];
 		
-		_characterLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.bounds.size.width - 20, self.bounds.size.height - 50)];
+		_characterLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.bounds.size.width - 20, self.bounds.size.height - 30)];
 		[_characterLabel setTextColor:[UIColor whiteColor]];
 		[_characterLabel setBackgroundColor:[UIColor clearColor]];
 		[_characterLabel setFont:[UIFont boldSystemFontOfSize:72]];
+		[_characterLabel setTextAlignment:UITextAlignmentCenter];
 		[_characterLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
 		[self addSubview:_characterLabel];
 		
-		_descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.bounds.size.height - 40, self.bounds.size.width - 10, 30)];
+		_descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.bounds.size.height - 25, self.bounds.size.width - 20, 20)];
 		[_descriptionLabel setTextColor:[UIColor whiteColor]];
 		[_descriptionLabel setBackgroundColor:[UIColor clearColor]];
 		[_descriptionLabel setFont:[UIFont boldSystemFontOfSize:10]];
+		[_descriptionLabel setTextAlignment:UITextAlignmentCenter];
 		[_descriptionLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin];
 		[self addSubview:_descriptionLabel];
 		
@@ -73,13 +78,13 @@
 	
 	_editing = editing;
 	
-	[_backgroundView setImage:self.selected ? [UIImage imageNamed:@"box.png"] : [UIImage imageNamed:@"box-selected.png"]];
-	
 }
 
 - (void)setSelected:(BOOL)selected {
 	
 	_selected = selected;
+	
+	[_backgroundView setImage:self.selected ? [UIImage imageNamed:@"box-selected.png"] : [UIImage imageNamed:@"box.png"]];
 	
 }
 
@@ -88,6 +93,18 @@
 - (void)dealloc {
 	
     [super dealloc];
+	
+}
+
+#pragma mark -
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	
+	[self setSelected:!self.selected];
+	
+	if ([self.delegate respondsToSelector:@selector(boxView:selected:)]) {
+		[self.delegate boxView:self selected:self.selected];
+	}
 	
 }
 
